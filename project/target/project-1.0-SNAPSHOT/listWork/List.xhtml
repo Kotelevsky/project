@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListListWorkTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListListWorkEmpty}" rendered="#{listWorkController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{listWorkController.items.rowCount > 0}">
+                    <h:outputText value="#{listWorkController.pagination.pageFirstItem + 1}..#{listWorkController.pagination.pageLastItem + 1}/#{listWorkController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{listWorkController.previous}" value="#{bundle.Previous} #{listWorkController.pagination.pageSize}" rendered="#{listWorkController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{listWorkController.next}" value="#{bundle.Next} #{listWorkController.pagination.pageSize}" rendered="#{listWorkController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{listWorkController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListWorkTitle_listWorkPK_statusid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.listWorkPK.statusid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListWorkTitle_listWorkPK_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.listWorkPK.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListWorkTitle_orderid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.orderid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListWorkTitle_statusid1}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.statusid1}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListWorkTitle_work}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.work}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListWorkTitle_masterid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.masterid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{listWorkController.prepareView}" value="#{bundle.ListListWorkViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{listWorkController.prepareEdit}" value="#{bundle.ListListWorkEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{listWorkController.destroy}" value="#{bundle.ListListWorkDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{listWorkController.prepareCreate}" value="#{bundle.ListListWorkCreateLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ListListWorkIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

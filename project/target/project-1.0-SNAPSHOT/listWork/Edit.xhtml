@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditListWorkTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditListWorkLabel_listWorkPK_statusid}" for="listWorkPK_statusid" />
+                    <h:inputText id="listWorkPK_statusid" value="#{listWorkController.selected.listWorkPK.statusid}" title="#{bundle.EditListWorkTitle_listWorkPK_statusid}" required="true" requiredMessage="#{bundle.EditListWorkRequiredMessage_listWorkPK_statusid}"/>
+                    <h:outputLabel value="#{bundle.EditListWorkLabel_listWorkPK_id}" for="listWorkPK_id" />
+                    <h:inputText id="listWorkPK_id" value="#{listWorkController.selected.listWorkPK.id}" title="#{bundle.EditListWorkTitle_listWorkPK_id}" required="true" requiredMessage="#{bundle.EditListWorkRequiredMessage_listWorkPK_id}"/>
+                    <h:outputLabel value="#{bundle.EditListWorkLabel_orderid}" for="orderid" />
+                    <h:selectOneMenu id="orderid" value="#{listWorkController.selected.orderid}" title="#{bundle.EditListWorkTitle_orderid}" required="true" requiredMessage="#{bundle.EditListWorkRequiredMessage_orderid}">
+                        <f:selectItems value="#{order1Controller.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditListWorkLabel_statusid1}" for="statusid1" />
+                    <h:selectOneMenu id="statusid1" value="#{listWorkController.selected.statusid1}" title="#{bundle.EditListWorkTitle_statusid1}" required="true" requiredMessage="#{bundle.EditListWorkRequiredMessage_statusid1}">
+                        <f:selectItems value="#{statusController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditListWorkLabel_work}" for="work" />
+                    <h:selectOneMenu id="work" value="#{listWorkController.selected.work}" title="#{bundle.EditListWorkTitle_work}" required="true" requiredMessage="#{bundle.EditListWorkRequiredMessage_work}">
+                        <f:selectItems value="#{workController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditListWorkLabel_masterid}" for="masterid" />
+                    <h:selectOneMenu id="masterid" value="#{listWorkController.selected.masterid}" title="#{bundle.EditListWorkTitle_masterid}" required="true" requiredMessage="#{bundle.EditListWorkRequiredMessage_masterid}">
+                        <f:selectItems value="#{masterController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{listWorkController.update}" value="#{bundle.EditListWorkSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditListWorkViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{listWorkController.prepareList}" value="#{bundle.EditListWorkShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditListWorkIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

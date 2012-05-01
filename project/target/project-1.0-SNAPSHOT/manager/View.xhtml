@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewManagerTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewManagerLabel_id}"/>
+                    <h:outputText value="#{managerController.selected.id}" title="#{bundle.ViewManagerTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewManagerLabel_lastName}"/>
+                    <h:outputText value="#{managerController.selected.lastName}" title="#{bundle.ViewManagerTitle_lastName}"/>
+                    <h:outputText value="#{bundle.ViewManagerLabel_firstName}"/>
+                    <h:outputText value="#{managerController.selected.firstName}" title="#{bundle.ViewManagerTitle_firstName}"/>
+                    <h:outputText value="#{bundle.ViewManagerLabel_address}"/>
+                    <h:outputText value="#{managerController.selected.address}" title="#{bundle.ViewManagerTitle_address}"/>
+                    <h:outputText value="#{bundle.ViewManagerLabel_phoneNumber}"/>
+                    <h:outputText value="#{managerController.selected.phoneNumber}" title="#{bundle.ViewManagerTitle_phoneNumber}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{managerController.destroyAndView}" value="#{bundle.ViewManagerDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewManagerEditLink}"/>
+                <br />
+                <h:commandLink action="#{managerController.prepareCreate}" value="#{bundle.ViewManagerCreateLink}" />
+                <br />
+                <h:commandLink action="#{managerController.prepareList}" value="#{bundle.ViewManagerShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewManagerIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

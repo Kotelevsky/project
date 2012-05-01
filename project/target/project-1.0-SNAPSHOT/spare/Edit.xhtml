@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditSpareTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditSpareLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{spareController.selected.id}" title="#{bundle.EditSpareTitle_id}" required="true" requiredMessage="#{bundle.EditSpareRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditSpareLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{spareController.selected.name}" title="#{bundle.EditSpareTitle_name}" required="true" requiredMessage="#{bundle.EditSpareRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.EditSpareLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{spareController.selected.description}" title="#{bundle.EditSpareTitle_description}" />
+                    <h:outputLabel value="#{bundle.EditSpareLabel_price}" for="price" />
+                    <h:inputText id="price" value="#{spareController.selected.price}" title="#{bundle.EditSpareTitle_price}" required="true" requiredMessage="#{bundle.EditSpareRequiredMessage_price}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{spareController.update}" value="#{bundle.EditSpareSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditSpareViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{spareController.prepareList}" value="#{bundle.EditSpareShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditSpareIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

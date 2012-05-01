@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSpareTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListSpareEmpty}" rendered="#{spareController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{spareController.items.rowCount > 0}">
+                    <h:outputText value="#{spareController.pagination.pageFirstItem + 1}..#{spareController.pagination.pageLastItem + 1}/#{spareController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{spareController.previous}" value="#{bundle.Previous} #{spareController.pagination.pageSize}" rendered="#{spareController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{spareController.next}" value="#{bundle.Next} #{spareController.pagination.pageSize}" rendered="#{spareController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{spareController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSpareTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSpareTitle_name}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSpareTitle_description}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSpareTitle_price}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.price}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{spareController.prepareView}" value="#{bundle.ListSpareViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{spareController.prepareEdit}" value="#{bundle.ListSpareEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{spareController.destroy}" value="#{bundle.ListSpareDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{spareController.prepareCreate}" value="#{bundle.ListSpareCreateLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ListSpareIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

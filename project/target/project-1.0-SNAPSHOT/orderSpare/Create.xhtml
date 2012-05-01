@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateOrderSpareTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateOrderSpareLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{orderSpareController.selected.id}" title="#{bundle.CreateOrderSpareTitle_id}" required="true" requiredMessage="#{bundle.CreateOrderSpareRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateOrderSpareLabel_count}" for="count" />
+                    <h:inputText id="count" value="#{orderSpareController.selected.count}" title="#{bundle.CreateOrderSpareTitle_count}" />
+                    <h:outputLabel value="#{bundle.CreateOrderSpareLabel_spareid}" for="spareid" />
+                    <h:selectOneMenu id="spareid" value="#{orderSpareController.selected.spareid}" title="#{bundle.CreateOrderSpareTitle_spareid}" required="true" requiredMessage="#{bundle.CreateOrderSpareRequiredMessage_spareid}">
+                        <f:selectItems value="#{spareController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateOrderSpareLabel_warehouseid}" for="warehouseid" />
+                    <h:selectOneMenu id="warehouseid" value="#{orderSpareController.selected.warehouseid}" title="#{bundle.CreateOrderSpareTitle_warehouseid}" required="true" requiredMessage="#{bundle.CreateOrderSpareRequiredMessage_warehouseid}">
+                        <f:selectItems value="#{warehouseController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateOrderSpareLabel_masterid}" for="masterid" />
+                    <h:selectOneMenu id="masterid" value="#{orderSpareController.selected.masterid}" title="#{bundle.CreateOrderSpareTitle_masterid}" required="true" requiredMessage="#{bundle.CreateOrderSpareRequiredMessage_masterid}">
+                        <f:selectItems value="#{masterController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{orderSpareController.create}" value="#{bundle.CreateOrderSpareSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{orderSpareController.prepareList}" value="#{bundle.CreateOrderSpareShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateOrderSpareIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

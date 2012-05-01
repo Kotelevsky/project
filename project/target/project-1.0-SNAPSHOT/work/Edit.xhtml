@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditWorkTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditWorkLabel_workPK_id}" for="workPK_id" />
+                    <h:inputText id="workPK_id" value="#{workController.selected.workPK.id}" title="#{bundle.EditWorkTitle_workPK_id}" required="true" requiredMessage="#{bundle.EditWorkRequiredMessage_workPK_id}"/>
+                    <h:outputLabel value="#{bundle.EditWorkLabel_workPK_spareid}" for="workPK_spareid" />
+                    <h:inputText id="workPK_spareid" value="#{workController.selected.workPK.spareid}" title="#{bundle.EditWorkTitle_workPK_spareid}" required="true" requiredMessage="#{bundle.EditWorkRequiredMessage_workPK_spareid}"/>
+                    <h:outputLabel value="#{bundle.EditWorkLabel_count}" for="count" />
+                    <h:inputText id="count" value="#{workController.selected.count}" title="#{bundle.EditWorkTitle_count}" required="true" requiredMessage="#{bundle.EditWorkRequiredMessage_count}"/>
+                    <h:outputLabel value="#{bundle.EditWorkLabel_spareid1}" for="spareid1" />
+                    <h:selectOneMenu id="spareid1" value="#{workController.selected.spareid1}" title="#{bundle.EditWorkTitle_spareid1}" required="true" requiredMessage="#{bundle.EditWorkRequiredMessage_spareid1}">
+                        <f:selectItems value="#{spareController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{workController.update}" value="#{bundle.EditWorkSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditWorkViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{workController.prepareList}" value="#{bundle.EditWorkShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditWorkIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

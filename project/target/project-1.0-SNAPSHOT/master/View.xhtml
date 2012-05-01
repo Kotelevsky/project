@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMasterTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewMasterLabel_id}"/>
+                    <h:outputText value="#{masterController.selected.id}" title="#{bundle.ViewMasterTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewMasterLabel_lastName}"/>
+                    <h:outputText value="#{masterController.selected.lastName}" title="#{bundle.ViewMasterTitle_lastName}"/>
+                    <h:outputText value="#{bundle.ViewMasterLabel_firstName}"/>
+                    <h:outputText value="#{masterController.selected.firstName}" title="#{bundle.ViewMasterTitle_firstName}"/>
+                    <h:outputText value="#{bundle.ViewMasterLabel_address}"/>
+                    <h:outputText value="#{masterController.selected.address}" title="#{bundle.ViewMasterTitle_address}"/>
+                    <h:outputText value="#{bundle.ViewMasterLabel_phoneNumber}"/>
+                    <h:outputText value="#{masterController.selected.phoneNumber}" title="#{bundle.ViewMasterTitle_phoneNumber}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{masterController.destroyAndView}" value="#{bundle.ViewMasterDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewMasterEditLink}"/>
+                <br />
+                <h:commandLink action="#{masterController.prepareCreate}" value="#{bundle.ViewMasterCreateLink}" />
+                <br />
+                <h:commandLink action="#{masterController.prepareList}" value="#{bundle.ViewMasterShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewMasterIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewBoxTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewBoxLabel_id}"/>
+                    <h:outputText value="#{boxController.selected.id}" title="#{bundle.ViewBoxTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewBoxLabel_time}"/>
+                    <h:outputText value="#{boxController.selected.time}" title="#{bundle.ViewBoxTitle_time}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewBoxLabel_statusid}"/>
+                    <h:outputText value="#{boxController.selected.statusid}" title="#{bundle.ViewBoxTitle_statusid}"/>
+                    <h:outputText value="#{bundle.ViewBoxLabel_masterid}"/>
+                    <h:outputText value="#{boxController.selected.masterid}" title="#{bundle.ViewBoxTitle_masterid}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{boxController.destroyAndView}" value="#{bundle.ViewBoxDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewBoxEditLink}"/>
+                <br />
+                <h:commandLink action="#{boxController.prepareCreate}" value="#{bundle.ViewBoxCreateLink}" />
+                <br />
+                <h:commandLink action="#{boxController.prepareList}" value="#{bundle.ViewBoxShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewBoxIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

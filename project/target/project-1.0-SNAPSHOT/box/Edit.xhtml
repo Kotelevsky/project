@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditBoxTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditBoxLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{boxController.selected.id}" title="#{bundle.EditBoxTitle_id}" required="true" requiredMessage="#{bundle.EditBoxRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditBoxLabel_time}" for="time" />
+                    <h:inputText id="time" value="#{boxController.selected.time}" title="#{bundle.EditBoxTitle_time}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditBoxLabel_statusid}" for="statusid" />
+                    <h:selectOneMenu id="statusid" value="#{boxController.selected.statusid}" title="#{bundle.EditBoxTitle_statusid}" required="true" requiredMessage="#{bundle.EditBoxRequiredMessage_statusid}">
+                        <f:selectItems value="#{statusController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditBoxLabel_masterid}" for="masterid" />
+                    <h:selectOneMenu id="masterid" value="#{boxController.selected.masterid}" title="#{bundle.EditBoxTitle_masterid}" required="true" requiredMessage="#{bundle.EditBoxRequiredMessage_masterid}">
+                        <f:selectItems value="#{masterController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{boxController.update}" value="#{bundle.EditBoxSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditBoxViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{boxController.prepareList}" value="#{bundle.EditBoxShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditBoxIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

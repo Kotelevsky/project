@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateClientTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateClientLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{clientController.selected.id}" title="#{bundle.CreateClientTitle_id}" required="true" requiredMessage="#{bundle.CreateClientRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateClientLabel_lastName}" for="lastName" />
+                    <h:inputText id="lastName" value="#{clientController.selected.lastName}" title="#{bundle.CreateClientTitle_lastName}" required="true" requiredMessage="#{bundle.CreateClientRequiredMessage_lastName}"/>
+                    <h:outputLabel value="#{bundle.CreateClientLabel_firstName}" for="firstName" />
+                    <h:inputText id="firstName" value="#{clientController.selected.firstName}" title="#{bundle.CreateClientTitle_firstName}" required="true" requiredMessage="#{bundle.CreateClientRequiredMessage_firstName}"/>
+                    <h:outputLabel value="#{bundle.CreateClientLabel_address}" for="address" />
+                    <h:inputText id="address" value="#{clientController.selected.address}" title="#{bundle.CreateClientTitle_address}" />
+                    <h:outputLabel value="#{bundle.CreateClientLabel_phoneNumber}" for="phoneNumber" />
+                    <h:inputText id="phoneNumber" value="#{clientController.selected.phoneNumber}" title="#{bundle.CreateClientTitle_phoneNumber}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{clientController.create}" value="#{bundle.CreateClientSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{clientController.prepareList}" value="#{bundle.CreateClientShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateClientIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
